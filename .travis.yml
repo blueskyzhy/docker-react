@@ -1,3 +1,4 @@
+language: generic
 sudo: required
 services:
   - docker
@@ -7,3 +8,11 @@ before_install:
 
 script:
   - docker run -e CI=true blueskyzhy/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "DockerReact"
+  evn: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-us-west-2-683938102574"
+  bucket_path: "DockerReact"
